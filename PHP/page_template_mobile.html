@@ -1,0 +1,333 @@
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">-->
+<!--<html xmlns="http://www.w3.org/1999/xhtml" lang="en">-->
+<!--<head>-->
+<!--    <meta charset="utf-8" name=”viewport” content=”width=device-width, initial-scale=1″>-->
+<!--    <title>#PAGE-TITLE#</title>-->
+<!--    <link rel="stylesheet" href="/css/leaflet.css"/>-->
+<!--    <link rel="stylesheet" href="/css/leaflet-panel-layers.css"/>-->
+
+<!--    <script src="/js/leaflet.js"></script>-->
+<!--    <script src="/js/leaflet-panel-layers.js"></script>-->
+<!--    <script src="/js/jquery.min.js"></script>-->
+<!--    <script src="/js/leaflet-ajax/dist/leaflet.ajax.js"></script>-->
+<!--    <script src="/js/legend.js"></script>-->
+<!--    <link rel="stylesheet" href="/css/legend.css"/>-->
+
+<!--&lt;!&ndash;    <script>&ndash;&gt;-->
+<!--&lt;!&ndash;        function fileSelected() {&ndash;&gt;-->
+<!--&lt;!&ndash;            var count = document.getElementById('fileToUpload').files.length;&ndash;&gt;-->
+<!--&lt;!&ndash;            document.getElementById('details').innerHTML = "";&ndash;&gt;-->
+
+<!--&lt;!&ndash;            for (var index = 0; index < count; index++) {&ndash;&gt;-->
+<!--&lt;!&ndash;                var file = document.getElementById('fileToUpload').files[index];&ndash;&gt;-->
+<!--&lt;!&ndash;                var fileSize = 0;&ndash;&gt;-->
+
+<!--&lt;!&ndash;                if (file.size > 1024 * 1024)&ndash;&gt;-->
+<!--&lt;!&ndash;                    fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';&ndash;&gt;-->
+<!--&lt;!&ndash;                else&ndash;&gt;-->
+<!--&lt;!&ndash;                    fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';&ndash;&gt;-->
+
+<!--&lt;!&ndash;                document.getElementById('details').innerHTML += 'Name: ' + file.name + '<br>Size: ' + fileSize + '<br>Type: ' + file.type;&ndash;&gt;-->
+<!--&lt;!&ndash;                document.getElementById('details').innerHTML += '<p>';&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function uploadFile() {&ndash;&gt;-->
+<!--&lt;!&ndash;            var fd = new FormData();&ndash;&gt;-->
+<!--&lt;!&ndash;            var count = document.getElementById('fileToUpload').files.length;&ndash;&gt;-->
+
+<!--&lt;!&ndash;            var latitude = 27.7823;//position.coords.latitude; //Get latitude&ndash;&gt;-->
+<!--&lt;!&ndash;            var longitude = -97.5606;//position.coords.longitude; //Get longitude&ndash;&gt;-->
+
+<!--&lt;!&ndash;                        &ndash;&gt;-->
+
+<!--&lt;!&ndash;            for (var index = 0; index < count; index++) {&ndash;&gt;-->
+<!--&lt;!&ndash;                var file = document.getElementById('fileToUpload').files[index];&ndash;&gt;-->
+<!--&lt;!&ndash;                fd.append('myFile', file);&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+<!--&lt;!&ndash;            // Send input from Notes&ndash;&gt;-->
+<!--&lt;!&ndash;            fd.append('notes', document.getElementById('notes').value);&ndash;&gt;-->
+<!--&lt;!&ndash;            // Send coordinates&ndash;&gt;-->
+<!--&lt;!&ndash;            fd.append('coord_latitude', latitude);&ndash;&gt;-->
+<!--&lt;!&ndash;            fd.append('coord_longitude', longitude);&ndash;&gt;-->
+
+<!--&lt;!&ndash;            var xhr = new XMLHttpRequest();&ndash;&gt;-->
+
+<!--&lt;!&ndash;            xhr.upload.addEventListener("progress", uploadProgress, false);&ndash;&gt;-->
+<!--&lt;!&ndash;            xhr.addEventListener("load", uploadComplete, false);&ndash;&gt;-->
+<!--&lt;!&ndash;            xhr.addEventListener("error", uploadFailed, false);&ndash;&gt;-->
+<!--&lt;!&ndash;            xhr.addEventListener("abort", uploadCanceled, false);&ndash;&gt;-->
+<!--&lt;!&ndash;            xhr.open("POST", "/web/uas_tools/visualization_generator/V2/Resources/PHP/savetofile.php");&ndash;&gt;-->
+<!--&lt;!&ndash;            xhr.send(fd);&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function uploadProgress(evt) {&ndash;&gt;-->
+
+<!--&lt;!&ndash;            if (evt.lengthComputable) {&ndash;&gt;-->
+<!--&lt;!&ndash;                var percentComplete = Math.round(evt.loaded * 100 / evt.total);&ndash;&gt;-->
+<!--&lt;!&ndash;                document.getElementById('progress').innerHTML = percentComplete.toString() + '%';&ndash;&gt;-->
+<!--&lt;!&ndash;            } else {&ndash;&gt;-->
+<!--&lt;!&ndash;                document.getElementById('progress').innerHTML = 'unable to compute';&ndash;&gt;-->
+<!--&lt;!&ndash;            }&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function uploadComplete(evt) {&ndash;&gt;-->
+<!--&lt;!&ndash;            /* This event is raised when the server send back a response */&ndash;&gt;-->
+<!--&lt;!&ndash;            alert(evt.target.responseText);&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function uploadFailed(evt) {&ndash;&gt;-->
+<!--&lt;!&ndash;            alert("There was an error attempting to upload the file.");&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;        function uploadCanceled(evt) {&ndash;&gt;-->
+<!--&lt;!&ndash;            alert("The upload has been canceled by the user or the browser dropped the connection.");&ndash;&gt;-->
+<!--&lt;!&ndash;        }&ndash;&gt;-->
+
+<!--&lt;!&ndash;    </script>&ndash;&gt;-->
+
+<!--    <style>-->
+<!--        body {-->
+<!--            margin: 0;-->
+<!--            padding: 0;-->
+<!--        }-->
+
+<!--        #map {-->
+<!--            position: absolute;-->
+<!--            /*z-index: -1;*/-->
+<!--            /*position: absolute;*/-->
+<!--            top: 0;-->
+<!--            bottom: 0;-->
+<!--            width: 100%;-->
+<!--        }-->
+
+<!--        /*#button {*/-->
+<!--        /*    top: 10%;*/-->
+<!--        /*    left: 0.3%;*/-->
+<!--        /*    position: absolute;*/-->
+<!--        /*    !* Let mouse events go through to reach the map underneath *!*/-->
+<!--        /*    !*pointer-events: none;*!*/-->
+<!--        /*    !* Make sure to be above the map pane (.leaflet-pane) *!*/-->
+<!--        /*    z-index: 450;*/-->
+<!--        /*        background-color: silver;*/-->
+<!--        /*        border-style: double;*/-->
+<!--        /*        border-color: black;*/-->
+<!--        /*        border-radius: 5px;*/-->
+<!--        /*}*/-->
+
+<!--        textarea {-->
+<!--            background-color: lightblue;-->
+<!--        }-->
+<!--    </style>-->
+
+<!--    <script>-->
+<!--        function all() {-->
+<!--            (function (i, s, o, g, r, a, m) {-->
+<!--                i['GoogleAnalyticsObject'] = r;-->
+<!--                i[r] = i[r] || function () {-->
+<!--                    (i[r].q = i[r].q || []).push(arguments)-->
+<!--                }, i[r].l = 1 * new Date();-->
+<!--                a = s.createElement(o),-->
+<!--                    m = s.getElementsByTagName(o)[0];-->
+<!--                a.async = 1;-->
+<!--                a.src = g;-->
+<!--                m.parentNode.insertBefore(a, m)-->
+<!--            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');-->
+
+<!--            ga('create', 'UA-74689450-1', 'auto');-->
+<!--            ga('send', 'pageview');-->
+
+<!--            var map = L.map('map', {-->
+<!--                center: L.latLng([#PROJECT-CENTER#]),-->
+<!--                zoom: #DEFAULT-ZOOM#,-->
+<!--                minZoom-->
+<!--        :-->
+<!--            #MIN-ZOOM#,-->
+<!--                maxZoom-->
+<!--        :-->
+<!--            #MAX-ZOOM#,-->
+<!--                attributionControl-->
+<!--        :-->
+<!--            false-->
+<!--        });-->
+
+<!--            var osm_map = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {-->
+<!--                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',-->
+<!--                zIndex: 0-->
+<!--            });-->
+
+<!--            var mapbox = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {-->
+<!--                attribution: 'Imagery from <a href="https://mapbox.com/about/maps/">MapBox</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',-->
+<!--                subdomains: 'abcd',-->
+<!--                id: 'mapbox.satellite',-->
+<!--                accessToken: 'pk.eyJ1IjoiaGFtZG9yaSIsImEiOiJjaWZmZzBwbjI4ZGdqc21seDFhOHA5dGcxIn0.4An46DNTDt97W992MRRWoQ',-->
+<!--                maxNativeZoom: 19,-->
+<!--                zIndex: 0-->
+<!--            });-->
+
+<!--            // Layers-->
+<!--            #LAYERS#-->
+
+<!--                map.addLayer(mapbox);-->
+
+<!--            var baseLayers = [-->
+<!--                {-->
+<!--                    name: "Open Street Map",-->
+<!--                    layer: osm_map-->
+<!--                },-->
+<!--                {-->
+<!--                    name: "Satellite Map",-->
+<!--                    layer: mapbox-->
+<!--                },-->
+<!--            ];-->
+
+<!--            var overLayers = [-->
+<!--                #OVER-LAYERS#-->
+<!--            ];-->
+
+<!--            var panelLayers = new L.Control.PanelLayers(baseLayers, overLayers, {collapsibleGroups: true});-->
+<!--            map.addControl(panelLayers);-->
+
+<!--            //Added-->
+<!--            // map.getContainer().appendChild(form1);-->
+
+<!--            //function geoFindMe() {-->
+<!--            //Inicia el mapa-->
+<!--            //var map = L.map('map').setView([0 , 0], 13);-->
+
+<!--            //L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {attribution: '© <a href="https://osm.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);-->
+
+
+<!--            //const mapLink = document.querySelector('#map-link');-->
+
+<!--            //Inicia el marcador-->
+<!--            // const marker = L.marker([0, 0]).bindPopup("You are here").on('click', onClick).addTo(map);-->
+<!--            const marker = L.marker([0, 0]).on('click', onClick).addTo(map).bindTooltip("Click here to upload a picture",-->
+<!--                {-->
+<!--                    permanent: true,-->
+<!--                    direction: 'right'-->
+<!--                }-->
+<!--            );-->
+
+<!--            // When mouse pass over, show message on marker-->
+<!--            //.bindTooltip("Click here to upload a picture")-->
+
+<!--            var redIcon = new L.Icon({-->
+<!--                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',-->
+<!--                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',-->
+<!--                iconSize: [25, 41],-->
+<!--                iconAnchor: [12, 41],-->
+<!--                popupAnchor: [1, -34],-->
+<!--                shadowSize: [41, 41]-->
+<!--            });-->
+
+
+<!--            // Add red markers for images-->
+<!--            // const marker1 = L.marker([27.7823, -97.5606], {icon: greenIcon}).bindPopup("Image 1").addTo(map);-->
+
+<!--            // for (i = 0; i == 5; i++) {-->
+<!--            //     var test = -97.5606+i;-->
+<!--            const marker1 = L.marker([27.78233, -97.5608], {icon: redIcon}).on('click', onClick1).bindPopup("Image 1").addTo(map);-->
+<!--            const marker2 = L.marker([27.78255, -97.5610], {icon: redIcon}).on('click', onClick1).bindPopup("Image 2").addTo(map);-->
+<!--            const marker3 = L.marker([27.78277, -97.5612], {icon: redIcon}).on('click', onClick1).bindPopup("Image 3").addTo(map);-->
+<!--            const marker4 = L.marker([27.78299, -97.5613], {icon: redIcon}).on('click', onClick1).bindPopup("Image 4").addTo(map);-->
+
+<!--            // When click on red marker, open a new tab with the image full size-->
+<!--            function onClick1(e) {-->
+<!--                //console.log("https://www.w3schools.com");-->
+<!--                window.open("/uas_tools/visualization_generator/V2/Resources/PHP/uploads/image.jpg");-->
+<!--            }-->
+
+<!--            //var siteURL = document.URL;-->
+<!--            //window.location.href = "/uas_tools/visualization_generator/V2/Resources/PHP/upload_picture.html" + siteURL;-->
+
+<!--            // $.ajax({-->
+<!--            //     type: 'POST',-->
+<!--            //     url: '/uas_tools/visualization_generator/V2/Resources/PHP/upload_picture.html',-->
+<!--            //     data: 'url=' + window.location.toString(),-->
+<!--            //     success: function(response) {-->
+<!--            //         console.log(response);-->
+<!--            //     }-->
+<!--            // });-->
+
+<!--            // When click on blue marker, go to-->
+<!--            function onClick(e) {-->
+<!--                //console.log("https://www.w3schools.com");-->
+<!--                //window.open("/uas_tools/visualization_generator/V2/Resources/PHP/upload_picture.html");-->
+
+<!--                $.ajax({-->
+<!--                    type: 'POST',-->
+<!--                    url: '/uas_tools/visualization_generator/V2/Resources/PHP/upload_picture.php',-->
+<!--                    //url: 'https://chub.gdslab.org/uas_tools/visualization_generator/V2/Resources/PHP/upload_picture.php',-->
+<!--                    data: { url: location.href },-->
+<!--                    success: function(response) {-->
+<!--                        console.log(response);-->
+<!--                    },-->
+<!--                    error: function () {-->
+<!--                        // your error callback-->
+<!--                    }-->
+<!--                });-->
+
+<!--                window.open("/uas_tools/visualization_generator/V2/Resources/PHP/upload_picture.php");-->
+<!--                //alert(document.URL);-->
+<!--            }-->
+<!--        //}-->
+
+<!--            //let firstime = true;-->
+<!--            function success(position) {-->
+<!--                const latitude = position.coords.latitude; // Set latitude-->
+<!--                const longitude = position.coords.longitude;// Set longitude-->
+<!--                // Update markers location-->
+<!--                marker.setLatLng([latitude, longitude]).addTo(map);-->
+
+<!--                status.textContent = '';-->
+
+<!--                // if(firstime){-->
+<!--                //   map.setView([latitude, longitude], 15);-->
+<!--                //   firstime = false;-->
+<!--                // }-->
+<!--            }-->
+
+<!--            //Error checking-->
+<!--            function error() {-->
+<!--                status.textContent = 'Unable to retrieve your location';-->
+<!--            }-->
+
+<!--            //If geolocation is not supported-->
+<!--            if (!navigator.geolocation) {-->
+<!--                status.textContent = 'Geolocation is not supported by your browser';-->
+<!--            } else {-->
+<!--                status.textContent = 'Locating…';-->
+<!--                navigator.geolocation.watchPosition(success, error, {-->
+<!--                    timeout: Infinity,-->
+<!--                    enableHighAccuracy: true,-->
+<!--                    maximumAge: 0-->
+<!--                });-->
+<!--            }-->
+
+<!--            //setInterval(geoFindMe, 1000); // to set how often you want a function to load in ms.-->
+
+<!--            //}-->
+
+<!--            //Esto no se pa que es, creo que es para cuando se le hace click, haga a la funcion-->
+<!--            //document.querySelector('#find-me').addEventListener('click', geoFindMe);-->
+<!--        }-->
+<!--    </script>-->
+<!--</head>-->
+
+<!--<body onload="all();">-->
+<!--&lt;!&ndash;<button id="button" type="button" onclick="location.href='https://chub.gdslab.org/web/uas_tools/visualization_generator/V2/Resources/PHP/upload_picture.html'">Take a picture</button>&ndash;&gt;-->
+<!--<br/>-->
+
+<!--<div id="map"></div>-->
+
+<!--&lt;!&ndash;<form method="post" action="{next_page}">&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="cat" value="{category}" />&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="var1" value="val1" />&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="hidden" name="var2" value="val2" />&ndash;&gt;-->
+<!--&lt;!&ndash;    <input type="submit" value="Button_TO_Next_Page" />&ndash;&gt;-->
+<!--&lt;!&ndash;</form>&ndash;&gt;-->
+
+<!--&lt;!&ndash;<br><br><br><br>&ndash;&gt;-->
+<!--</body>-->
+<!--</html>-->

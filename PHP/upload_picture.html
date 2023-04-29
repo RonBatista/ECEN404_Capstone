@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" content=”width=device-width, initial-scale=1″ name=”viewport”>
+    <title>Take or select photo(s) and upload</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+
+    <!-- Styles -->
+    <link rel="stylesheet" type="text/css" href="../style.css">
+
+    <link href="/css/leaflet.css" rel="stylesheet"/>
+    <link href="/css/leaflet-panel-layers.css" rel="stylesheet"/>
+
+    <script src="/js/leaflet.js"></script>
+    <script src="/js/leaflet-panel-layers.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/leaflet-ajax/dist/leaflet.ajax.js"></script>
+    <script src="/js/legend.js"></script>
+    <link href="/css/legend.css" rel="stylesheet"/>
+
+    <script>
+        function fileSelected() {
+            var count = document.getElementById('fileToUpload').files.length;
+            document.getElementById('details').innerHTML = "";
+
+            for (var index = 0; index < count; index++) {
+                var file = document.getElementById('fileToUpload').files[index];
+                var fileSize = 0;
+
+                if (file.size > 1024 * 1024)
+                    fileSize = (Math.round(file.size * 100 / (1024 * 1024)) / 100).toString() + 'MB';
+                else
+                    fileSize = (Math.round(file.size * 100 / 1024) / 100).toString() + 'KB';
+
+                document.getElementById('details').innerHTML += 'Name: ' + file.name + '<br>Size: ' + fileSize + '<br>Type: ' + file.type;
+                document.getElementById('details').innerHTML += '<p>';
+            }
+        }
+
+        // var queryString = decodeURIComponent(window.location.search);
+        // queryString = queryString.substring(1);
+        alert(queryString);
+
+        //Leo
+        //Declaro variables globales
+        var latitude = 0;
+        var longitude = 0;
+        //alert("declara variable");
+
+        //Leo modified
+        //Si funciona hace lo que dice
+        //function getLocation (){
+        function success(position) {
+            //alert("Cambia variable")
+            latitude  = position.coords.latitude; //establece la latitud con su variable
+            longitude = position.coords.longitude; //establece la longitud con su variable
+            status.textContent = '';
+        }
+
+        //If there are errors
+        function error() {
+            status.textContent = 'Unable to retrieve your location';
+        }
+
+        // Getting position
+        function getPosition (){
+            //alert("Get Position")
+            //Por si el navegador no tiene para ubicar
+            // if(!navigator.geolocation) {
+            //     status.textContent = 'Geolocation is not supported by your browser';
+            // }
+            // else {
+            //     status.textContent = 'Locating…';
+            //     navigator.geolocation.getCurrentPosition(success, error);
+            // }
+
+            if(!navigator.geolocation) {
+                status.textContent = 'Geolocation is not supported by your browser';
+            } else {
+                status.textContent = 'Locating…';
+                navigator.geolocation.watchPosition(success, error,{
+                    timeout: Infinity,
+                    enableHighAccuracy: true,
+                    maximumAge: 0});
+            }
+        }
+        //}
+
+        // Uploading picture
+        function uploadFile() {
+            var fd = new FormData();
+            var count = document.getElementById('fileToUpload').files.length;
+
+            // HARDCODED
+            //var latitude = 27.7823;//position.coords.latitude; //Get latitude
+            //var longitude = -97.5606;//position.coords.longitude; //Get longitude
+
+            // const latitude = position.coords.latitude; //establece la latitud con su variable
+            // const longitude = position.coords.longitude;//establece la longitud con su variable
+
+            for (var index = 0; index < count; index++) {
+                var file = document.getElementById('fileToUpload').files[index];
+                fd.append('myFile', file);
+            }
+
+            // Send input from Notes
+            fd.append('notes', document.getElementById('notes').value);
+
+            getPosition();
+
+            // Send coordinates
+            //alert("Envia variable");
+            fd.append('coord_latitude', latitude);
+            fd.append('coord_longitude', longitude);
+
+            var xhr = new XMLHttpRequest();
+
+            xhr.upload.addEventListener("progress", uploadProgress, false);
+            xhr.addEventListener("load", uploadComplete, false);
+            xhr.addEventListener("error", uploadFailed, false);
+            xhr.addEventListener("abort", uploadCanceled, false);
+            xhr.open("POST", "savetofile.php");
+            xhr.send(fd);
+        }
+
+        function uploadProgress(evt) {
+
+            if (evt.lengthComputable) {
+                var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+                document.getElementById('progress').innerHTML = percentComplete.toString() + '%';
+            } else {
+                document.getElementById('progress').innerHTML = 'unable to compute';
+            }
+        }
+
+        function uploadComplete(evt) {
+            /* This event is raised when the server send back a response */
+            alert(evt.target.responseText);
+            //alert("There was an error attempting to upload the file.");
+        }
+
+        function uploadFailed(evt) {
+            alert("There was an error attempting to upload the file.");
+        }
+
+        function uploadCanceled(evt) {
+            alert("The upload has been canceled by the user or the browser dropped the connection.");
+        }
+
+    </script>
+</head>
+
+<body onload="getPosition();">
+<form action="savetofile.php" enctype="multipart/form-data" id="form1" method="post">
+
+    <div>
+        <label for="fileToUpload">Take or select photo(s)</label><br/>
+        <input accept="image/*" capture id="fileToUpload" name="fileToUpload" onchange="fileSelected();"
+               type="file"/>
+    </div>
+
+    <div>
+        <br><br>
+        <label for="notes">Notes:</label>
+<!--        <textarea cols="50" id="notes" maxlength="2000" name="notes" placeholder="Please enter any additional information here"-->
+<!--                  rows="4" onchange="this.form.submit()"></textarea>-->
+
+        <textarea cols="50" id="notes" maxlength="2000" name="notes" placeholder="Please enter any additional information here"
+                  rows="4"></textarea>
+        <br><br>
+    </div>
+
+    <div id="details"></div>
+
+    <div>
+        <input onclick="uploadFile()" type="button" value="Upload"/>
+    </div>
+
+    <div id="progress"></div>
+
+</form>
+</body>
+</html>
