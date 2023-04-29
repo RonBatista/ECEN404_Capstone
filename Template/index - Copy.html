@@ -1,0 +1,284 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head> 
+<title>PAGE-TITLE</title> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
+<link rel="stylesheet" href="../../css/leaflet.css" />
+<link rel="stylesheet" href="../../css/leaflet-panel-layers.css" />
+
+<style>
+	body { margin:0; padding:0; }
+	#map { position:absolute; top:0; bottom:0; width:100%; }
+</style>
+</head>
+
+<body>
+<br />
+<div id="map"></div>
+
+<script src="../../js/leaflet.js"></script>
+<script src="../../js/leaflet-panel-layers.js"></script>
+<script src="../../js/jquery.min.js"></script>
+<script src="../../js/leaflet-ajax/dist/leaflet.ajax.js"></script>
+<script src="../../js/legend.js"></script>
+<link rel="stylesheet" href="../../css/legend.css" />
+
+<script>
+  	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  	ga('create', 'UA-74689450-1', 'auto');
+  	ga('send', 'pageview');
+</script>
+
+<script>
+	var map = L.map('map', {
+		center: L.latLng([PROJECT-CENTER]),
+		zoom: DEFAULT-ZOOM,
+		minZoom: MIN-ZOOM,
+		maxZoom: MAX-ZOOM,
+		attributionControl: false
+	});
+
+	var osm_map = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+		zIndex: 0
+	});
+
+ 	var mapbox = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+		attribution: 'Imagery from <a href="https://mapbox.com/about/maps/">MapBox</a> &mdash; Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+		subdomains: 'abcd',
+		id: 'mapbox.satellite',
+		accessToken: 'pk.eyJ1IjoiaGFtZG9yaSIsImEiOiJjaWZmZzBwbjI4ZGdqc21seDFhOHA5dGcxIn0.4An46DNTDt97W992MRRWoQ',
+		maxNativeZoom: 19,
+		zIndex: 0
+	});
+
+
+	// Layers
+	var p4p_20180411_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180411_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 50,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	var p4p_20180423_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180423_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 60,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180423_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180423_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 61,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	var p4p_20180507_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180507_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 70,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180507_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180507_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 71,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	var p4p_20180514_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180514_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 80,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180514_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180514_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 81,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	var p4p_20180523_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180523_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 90,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180523_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180523_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 91,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	var p4p_20180601_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180601_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 100,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180601_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180601_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 101,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	var p4p_20180606_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180606_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 110,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180606_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180606_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 111,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	var p4p_20180613_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180613_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 120,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180613_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180613_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 121,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});	
+
+	var sl3p_20180627_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180627_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 131,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});	
+
+	var p4p_20180703_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180703_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 140,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180703_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180703_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 141,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});	
+
+	var p4p_20180709_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180709_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 150,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180709_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180709_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 151,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	var p4p_20180719_rgb = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180719_cc_p4p_cotton_rgb/{z}/{x}/{y}.png', {tms: true, zIndex: 160,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+	var sl3p_20180719_cir = L.tileLayer('https://uashub.tamucc.edu/tms/cc/2018/20180719_cc_sl3p_cotton_cir/{z}/{x}/{y}.png', {tms: true, zIndex: 161,
+	bounds: L.latLngBounds([L.latLng(27.78349,-97.57358), L.latLng(27.78347,-97.57183),L.latLng(27.78089,-97.57189),
+							L.latLng(27.78092,-97.57361), L.latLng(27.78349,-97.57358)])});
+
+	
+	
+	map.addLayer(mapbox);
+
+	// Sorghum plot Boundary
+	var boundaryStyle = {
+				"color": "#ff7800",
+				"weight": 2,
+				"fillOpacity": 0,
+				"opacity": 1.0,
+			};
+	var gridStyle = {
+				"color": "#ff0000",
+				"weight": 1,
+				"fillOpacity": 0,
+				"opacity": 1.0,
+			};
+
+
+	var baseLayers = [
+		{
+			name: "Open Street Map",
+			layer: osm_map
+		},
+		{
+			name: "Satellie Map",
+			layer: mapbox
+		},
+	];
+
+	var overLayers = [
+	{
+		group: "RGB",
+		layers: [
+			{
+				name: "04/11/2018",
+				active: "true",
+				layer: p4p_20180411_rgb
+			},
+			{
+				name: "04/23/2018",
+				layer: p4p_20180423_rgb
+			},
+			{
+				name: "05/07/2018",
+				layer: p4p_20180507_rgb
+			},
+			{
+				name: "05/14/2018",
+				layer: p4p_20180514_rgb
+			},
+			{
+				name: "05/23/2018",
+				layer: p4p_20180523_rgb
+			},
+			{
+				name: "06/01/2018",
+				layer: p4p_20180601_rgb
+			},
+			{
+				name: "06/06/2018",
+				layer: p4p_20180606_rgb
+			},
+			{
+				name: "06/13/2018",
+				layer: p4p_20180613_rgb
+			},
+			{
+				name: "07/03/2018",
+				layer: p4p_20180703_rgb
+			},
+			{
+				name: "07/09/2018",
+				layer: p4p_20180709_rgb
+			},
+			{
+				name: "07/19/2018",
+				layer: p4p_20180719_rgb
+			}
+		]
+	},
+	{
+		group: "CIR",
+		layers: [
+			{
+				name: "04/23/2018",
+				layer: sl3p_20180423_cir
+			},
+			{
+				name: "05/07/2018",
+				layer: sl3p_20180507_cir
+			},
+			{
+				name: "05/14/2018",
+				layer: sl3p_20180514_cir
+			},
+			{
+				name: "05/23/2018",
+				layer: sl3p_20180523_cir
+			},
+			{
+				name: "06/01/2018",
+				layer: sl3p_20180601_cir
+			},
+			{
+				name: "06/06/2018",
+				layer: sl3p_20180606_cir
+			},
+			{
+				name: "06/13/2018",
+				layer: sl3p_20180613_cir
+			},
+			{
+				name: "06/27/2018",
+				layer: sl3p_20180627_cir
+			},
+			{
+				name: "07/03/2018",
+				layer: sl3p_20180703_cir
+			},
+			{
+				name: "07/09/2018",
+				layer: sl3p_20180709_cir
+			},
+			{
+				name: "07/19/2018",
+				layer: sl3p_20180719_cir
+			}
+		]
+	}
+	];
+
+	var panelLayers = new L.Control.PanelLayers(baseLayers, overLayers, {collapsibleGroups: true});
+	map.addControl(panelLayers);
+
+	//Add legends (the later a legend is added the higher priority it has)
+	AddLegend("ndvi");
+	AddLegend("exg");
+	AddLegend("chm");
+	
+	//Add map event for adding and removing layer to hide and show legends accordingly
+	AddLayerCheck();
+</script>
+
+</body>
+</html>
