@@ -1,0 +1,12 @@
+05.11.2021: project value 2021 Corpus Christi Cotton and Corn
+05.11.2021: orthomosaic value 20210408_cc_p4r_parking_mosaic.tif::/var/www/html/uas_data/uploads/products/2021_Corpus_Christi_Cotton_and_Corn/Phantom_4_Pro/RGB/04-08-2021/20210408/RGB_Ortho/20210408_cc_p4r_parking_mosaic/20210408_cc_p4r_parking_mosaic.tif::32614
+05.11.2021: canopy_height_model value 20210408_rgb_chm.tif::/var/www/html/uas_data/uploads/products/2021_Corpus_Christi_Cotton_and_Corn/Phantom_4_Pro/RGB/04-08-2021/20210408/CHM/20210408_rgb_chm/20210408_rgb_chm.tif
+05.11.2021: boundary value 2021_cc_brewer_plot_boundary_map_maturity_trial.shp::/var/www/html/uas_data/uploads/products/2021_Corpus_Christi_Cotton_and_Corn/10/28/2021//SHAPE/2021_cc_brewer_plot_boundary_map_maturity_trial/2021_cc_brewer_plot_boundary_map_maturity_trial.shp
+05.11.2021: !!!!!!!!!!!!!Selected Project name: 2021_Corpus_Christi_Cotton_and_Corn
+05.11.2021: !!!!!!!!!!!!!Selected ORTHOMOSIAC name: 20210408_cc_p4r_parking_mosaic
+05.11.2021: project value 2021 Corpus Christi Cotton and Corn
+05.11.2021: orthomosaic value 20210408_cc_p4r_parking_mosaic.tif::/var/www/html/uas_data/uploads/products/2021_Corpus_Christi_Cotton_and_Corn/Phantom_4_Pro/RGB/04-08-2021/20210408/RGB_Ortho/20210408_cc_p4r_parking_mosaic/20210408_cc_p4r_parking_mosaic.tif::32614
+05.11.2021: canopy_height_model value 20210408_rgb_chm.tif::/var/www/html/uas_data/uploads/products/2021_Corpus_Christi_Cotton_and_Corn/Phantom_4_Pro/RGB/04-08-2021/20210408/CHM/20210408_rgb_chm/20210408_rgb_chm.tif
+05.11.2021: boundary value 2021_cc_brewer_plot_boundary_map_maturity_trial.shp::/var/www/html/uas_data/uploads/products/2021_Corpus_Christi_Cotton_and_Corn/10/28/2021//SHAPE/2021_cc_brewer_plot_boundary_map_maturity_trial/2021_cc_brewer_plot_boundary_map_maturity_trial.shp
+05.11.2021: !!!!!!!!!!!!!Selected Project name: 2021_Corpus_Christi_Cotton_and_Corn
+05.11.2021: !!!!!!!!!!!!!Selected ORTHOMOSIAC name: 20210408_cc_p4r_parking_mosaic
