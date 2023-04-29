@@ -1,0 +1,42 @@
+Will upload the image! 
+selected_orthomosaic_FilePath= /var/www/html/uas_data/uploads/products/2022_Corpus_Christi_Cotton/DJI_Phantom_4_RTK/RGB/04-08-2022/20220408/RGB_Ortho/20220408_cc_p4r_parking_mosaic_clipped/20220408_cc_p4r_parking_mosaic_clipped.tif
+img_file= /var/www/html/uas_data/uploads/products/2022_Corpus_Christi_Cotton/DJI_Phantom_4_RTK/RGB/04-08-2022/20220408/RGB_Ortho/20220408_cc_p4r_parking_mosaic_clipped/20220408_cc_p4r_parking_mosaic_clipped.tif
+Uploaded the image: /var/www/html/uas_data/uploads/products/2022_Corpus_Christi_Cotton/DJI_Phantom_4_RTK/RGB/04-08-2022/20220408/RGB_Ortho/20220408_cc_p4r_parking_mosaic_clipped/20220408_cc_p4r_parking_mosaic_clipped.tif
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/cc_rgb folder does not exist. 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/cc_rgb folder was created. 
+Will be saving cc the results to: /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/cc_rgb 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/grvi folder does not exist. 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/grvi folder was created. 
+Will be saving cc the results to: /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/grvi 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/mgrvi folder does not exist. 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/mgrvi folder was created. 
+Will be saving cc the results to: /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/mgrvi 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/rgbvi folder does not exist. 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/rgbvi folder was created. 
+Will be saving cc the results to: /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/rgbvi 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/exg folder does not exist. 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/exg folder was created. 
+Will be saving cc the results to: /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/exg 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/exgr folder does not exist. 
+/home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/exgr folder was created. 
+Will be saving cc the results to: /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/exgr 
+Generating CC for the image: 20220408_cc_p4r_parking_mosaic_clipped.tif
+f = /var/www/html/uas_data/uploads/products/2022_Corpus_Christi_Cotton/DJI_Phantom_4_RTK/RGB/04-08-2022/20220408/RGB_Ortho/20220408_cc_p4r_parking_mosaic_clipped/20220408_cc_p4r_parking_mosaic_clipped.tif 
+out_dir=  /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped
+out_fn = /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped/cc_rgb/20220408_cc_p4r_parking_mosaic_clipped_cc_rgb.dat 
+Done with cc...  
+Generating VIs for the image: /var/www/html/uas_data/uploads/products/2022_Corpus_Christi_Cotton/DJI_Phantom_4_RTK/RGB/04-08-2022/20220408/RGB_Ortho/20220408_cc_p4r_parking_mosaic_clipped/20220408_cc_p4r_parking_mosaic_clipped.tif 
+Saving GRVI...  
+Saving MGRVI...  
+Saving RGBVI...  
+Saving ExG...  
+Saving ExGR...  
+Done with VIs...  
+Will upload the shp file...  
+Uploading the SHP file (path): /var/www/html/uas_data/uploads/products/2022_Corpus_Christi_Cotton/09/26/2022/SHAPE/2022_cc_corn_boundary_clipped/2022_cc_corn_boundary_clipped.shp 
+Done uploading the boundary file ... 
+Using EPSG: 32614 
+GENERATE - shp_file: /var/www/html/uas_data/uploads/products/2022_Corpus_Christi_Cotton/09/26/2022/SHAPE/2022_cc_corn_boundary_clipped/2022_cc_corn_boundary_clipped.shp 
+GENERATE - out_dir: /home/ubuntu/web/uas_data/download/product/2022_Corpus_Christi_Cotton/20220408_cc_p4r_parking_mosaic_clipped 
+GENERATE -  chm_file  
+Done with CC attributes  
